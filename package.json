@@ -1,10 +1,23 @@
 {
   "name": "downdetect",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
+  "bin": "src/index.js",
+  "pkg": {
+    "assets": [
+      "src/**/*"
+    ],
+    "targets": [
+      "node18-win-x64",
+      "node18-linux-x64"
+    ]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch src/index.js"
+    "dev": "node --watch src/index.js",
+    "build": "pkg . --out-path dist",
+    "build:win": "pkg . --targets node18-win-x64 --output dist/app.exe",
+    "build:linux": "pkg . --targets node18-linux-x64 --output dist/app"
   },
   "keywords": [],
   "author": "",
@@ -22,5 +35,8 @@
     "morgan": "^1.10.0",
     "react-router": "^7.4.0",
     "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
   }
 }
