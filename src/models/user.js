@@ -1,4 +1,5 @@
-const mongoose = require("../configration/dpconfig");
+const mongoose = require("../configration/db-config");
+
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -6,4 +7,5 @@ const userSchema = new mongoose.Schema({
   confirmpassword: String,
   role: { type: String, enum: ["admin", "customer"], default: "customer" },
 });
+
 module.exports = mongoose.model("User", userSchema);

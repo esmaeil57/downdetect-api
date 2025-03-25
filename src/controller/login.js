@@ -12,15 +12,17 @@ async function login(req, res) {
 
 async function refreshToken(req, res) {
   try {
-    const {token} = req.body;
+    const { token } = req.body;
     const newToken = await authService.login(token);
+    // console.log(newToken);
     res.json({ newToken: newToken });
   } catch (error) {
-    res.status(401).json({ message: "invalid " });
+    // console.log(error);
+    res.status(401).json({ message: "invalid" });
   }
 }
 
 module.exports = {
   login,
-  refreshToken
+  refreshToken,
 };
