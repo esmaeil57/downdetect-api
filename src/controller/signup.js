@@ -5,39 +5,40 @@ async function createUser(req, res) {
     let { email, password, name, confirmPassword } = req.body;
 
     if (!email) {
-      res.status(400).json({ message: "Missing email" });
+      return res.status(400).json({ message: "Missing email" });
     }
 
     if (!password) {
-      res.status(400).json({ message: "Missing password" });
+      return res.status(400).json({ message: "Missing password" });
     }
 
     if (!name) {
-      res.status(400).json({ message: "Missing name" });
+      return res.status(400).json({ message: "Missing name" });
     }
 
     if (!confirmPassword) {
-      res.status(400).json({ message: "Missing confirmPassword" });
+      return res.status(400).json({ message: "Missing confirmPassword" });
     }
 
     if (password !== confirmPassword) {
-      res
+      return res
         .status(400)
         .json({ message: "Password and confirmPassword do not match" });
     }
 
-    var userData = {
+    const userData = {
       email,
       password,
       name,
-      confirmPassword,
+
     };
 
     const user = await userService.createUser(userData);
-    res.status(201).json({ user: user, message: "User created success" });
+    res.status(201).json({ user, message: "User created successfully" });
   } catch (error) {
-    console.log(error);
-    res.status(400).json({ message: error.message });
+    console.error(error);
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 }
+
 module.exports = { createUser };

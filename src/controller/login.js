@@ -5,25 +5,28 @@ async function login(req, res) {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(400).json({ message: "Missing email or password" });
+      return res.status(404).json({ message: "Missing email or password" });
     }
 
     const token = await authService.login(email, password);
-    res.json({ token: token });
+    res.json({ token });
   } catch (error) {
-    res.status(401).json({ message: "invalid " });
+    res.status(404).json({ message: "Invalid email or password" });
   }
 }
 
 async function refreshToken(req, res) {
   try {
     const { token } = req.body;
-    const newToken = await authService.login(token);
-    // console.log(newToken);
-    res.json({ newToken: newToken });
+
+    if (!token) {
+      return res.status(400).json({ message: "Missing token" });
+    }
+
+    const newToken = await authService.refreshToken(token);
+    res.json({ newToken });
   } catch (error) {
-    // console.log(error);
-    res.status(401).json({ message: "invalid" });
+    res.status(401).json({ message: "Invalid or expired token" });
   }
 }
 
