@@ -1,8 +1,8 @@
 const bcrypt = require("bcrypt");
-const User = require("../models/user");
 const { generateToken } = require("../utils/jwtUtils");
 const { verifyToken } = require("../middlewares/auth-middleware");
 const { secretKey } = require("../configration/jwt-config");
+const User = require("../models/user");
 
 async function login(email, password) {
   try {
@@ -43,4 +43,18 @@ async function refreshToken(oldToken) {
   }
 }
 
-module.exports = { login };
+async function createUser(userData) {
+  const { name, email, password, confirmpassword} = userData;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const createUser = new User({
+    name,
+    email,
+    password: hashedPassword,
+    confirmpassword: hashedPassword,
+    role: "customer",
+  });
+  const savedUser = await createUser.save();
+  return savedUser;
+}
+
+module.exports = { login, createUser, refreshToken };

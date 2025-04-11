@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/jwt_db", {
+// const MONGO_URI =
+//   "mongodb+srv://yaqout:yaqout@cluster0.zqzqy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+const MONGO_URI = "mongodb://localhost:27017/jwt_db";
+
+mongoose.connect(MONGO_URI, {
   serverSelectionTimeoutMS: 5005,
 });
 
