@@ -55,7 +55,11 @@ This is the backend service for our Graduation Project: an AI-powered system for
 
     ```
 
-3. Start the development server:
+3. Create a `.env` file in the root with the following content
+   
+      ```
+
+4. Start the development server:
     ```bash
     node index.js
     ```
