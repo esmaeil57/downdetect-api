@@ -44,16 +44,19 @@ async function refreshToken(oldToken) {
 }
 
 async function createUser(userData) {
-  const { name, email, password, confirmpassword} = userData;
+  const { name, email, password, confirmpassword, role } = userData;
+
   const hashedPassword = await bcrypt.hash(password, 10);
-  const createUser = new User({
+
+  const newUser = new User({
     name,
     email,
     password: hashedPassword,
-    confirmpassword: hashedPassword,
-    role: "customer",
+    confirmpassword: hashedPassword, // optional
+    role: role || "customer", // fallback if missing
   });
-  const savedUser = await createUser.save();
+
+  const savedUser = await newUser.save();
   return savedUser;
 }
 

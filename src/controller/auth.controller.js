@@ -17,16 +17,17 @@ async function createUser(req, res) {
       });
     }
 
-    let { email, password, name, confirmPassword } = req.body;
-
-    var userData = {
+    let { email, password, name, confirmPassword, role } = req.body;
+    
+    const userData = {
       email,
       password,
       name,
       confirmPassword,
+      role, 
     };
-
-    const user = await userService.createUser(userData);
+    
+    const user = await authService.createUser(userData); // ✅ use authService
     res.status(201).json({ user: user, message: "User created success" });
   } catch (error) {
     console.log(error);
