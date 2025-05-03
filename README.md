@@ -16,7 +16,7 @@ This is the backend service for our Graduation Project: an AI-powered system for
 - **MongoDB** + **Mongoose**
 - **Zod** – Schema validation
 - **YouTube Data API** – Fetch relevant content
-- **JWT** – Authentication (if enabled)
+- **JWT** – Authentication
 
 📂 Project Structure
 
