@@ -16,7 +16,7 @@ This is the backend service for our Graduation Project: an AI-powered system for
 - **MongoDB** + **Mongoose**
 - **Zod** – Schema validation
 - **YouTube Data API** – Fetch relevant content
-- **JWT** – Authentication (if enabled)
+- **JWT** – Authentication
 
 📂 Project Structure
 
@@ -55,7 +55,11 @@ This is the backend service for our Graduation Project: an AI-powered system for
 
     ```
 
-3. Start the development server:
+3. Create a `.env` file in the root with the following content
+   
+      ```
+
+4. Start the development server:
     ```bash
     node index.js
     ```
