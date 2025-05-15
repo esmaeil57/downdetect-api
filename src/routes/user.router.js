@@ -8,7 +8,7 @@ const userController = require("../controller/user.controller");
 router.get("/", authenticateToken, async (req, res) => {
   try {
     const user = await User
-      .findById(req.user.id)
+      .findById(req.user._id)
       .select("-password -confirmpassword");              // exclude sensitive fields
 
     if (!user) {
