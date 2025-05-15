@@ -3,7 +3,7 @@ const { secretKey, options } = require("../configration/jwt-config");
 
 function generateToken(user) {
   const payload = {
-    id: user._id,
+    _id: user._id,
     email: user.email,
     role: user.role,
   };
