@@ -58,6 +58,9 @@ async function login(req, res) {
   } catch (error) {
     res.status(401).json({ message: "invalid " });
   }
+  const token = jwt.sign({ id: user._id, role: user.role }, secretKey, {
+  expiresIn: "1d",
+});
 }
 
 async function refreshToken(req, res) {
