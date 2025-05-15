@@ -15,8 +15,6 @@ router.get("/me", authenticateToken, async (req, res) => {
   } catch (error) {
     console.error("Error in /users/me:", error);
     res.status(500).json({ message: "Internal server error" });
-  }
-});
-
+}})
 
 module.exports = router;
