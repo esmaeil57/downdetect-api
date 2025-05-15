@@ -53,14 +53,13 @@ async function login(req, res) {
 
     const { email, password } = req.body;
 
-    const token = await authService.login(email, password);
-    res.json({ token: token });
+   const { token, user } = await authService.login(email, password);
+res.json({ token, user });
+
   } catch (error) {
     res.status(401).json({ message: "invalid " });
   }
-  const token = jwt.sign({ id: user._id, role: user.role }, secretKey, {
-  expiresIn: "1d",
-});
+  
 }
 
 async function refreshToken(req, res) {

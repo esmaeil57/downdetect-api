@@ -22,7 +22,15 @@ async function login(email, password) {
 
     const token = generateToken(existingUser);
 
-    return token;
+return {
+  token,
+  user: {
+    id: existingUser._id,
+    name: existingUser.name,
+    email: existingUser.email,
+    role: existingUser.role,
+  },
+};
   } catch (error) {
     console.log("Login error:", error.message);
     throw new Error("Invalid credentials");
